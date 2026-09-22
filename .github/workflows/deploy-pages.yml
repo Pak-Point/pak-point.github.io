@@ -1,0 +1,48 @@
+name: Deploy Pak Point to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout new site repository
+        uses: actions/checkout@v4
+
+      - name: Copy current Pak Point website
+        run: |
+          git clone --depth 1 https://github.com/Pak-Point/pak-point.git source-site
+          cp -a source-site/. .
+          rm -rf source-site .git .github
+          mkdir -p .github/workflows
+          sed -i 's#https://pak-point.github.io/pak-point/#https://pak-point.github.io/#g' index.html 2>/dev/null || true
+          sed -i 's#https://pak-point.github.io/pak-point/#https://pak-point.github.io/#g' sitemap.xml 2>/dev/null || true
+          sed -i 's#https://pak-point.github.io/pak-point/#https://pak-point.github.io/#g' robots.txt 2>/dev/null || true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
