@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ask Pak Point AI for information, explanations, writing help and answers in Urdu, Roman Urdu, Saraiki or English.">
+<title>Pak Point AI Assistant</title>
+<style>
+:root{--navy:#0b1f33;--navy2:#123b5d;--gold:#d6a84f;--bg:#f4f6f8;--text:#17212b;--muted:#66727e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:13px 18px;box-shadow:0 3px 14px rgba(0,0,0,.16)}
+.header-inner{max-width:1050px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:25px;font-weight:800;color:#fff;text-decoration:none}
+.back{color:#fff;text-decoration:none;font-weight:700;padding:8px 12px;border:1px solid #ffffff55;border-radius:8px}
+main{max-width:900px;margin:28px auto;padding:0 14px}
+.intro{text-align:center;margin-bottom:20px}
+.intro h1{margin:0;color:var(--navy);font-size:30px}
+.intro p{margin:6px 0;color:var(--muted)}
+.chat-shell{background:#fff;border:1px solid #e1e6eb;border-radius:16px;box-shadow:0 5px 22px rgba(11,31,51,.08);overflow:hidden}
+.toolbar{padding:13px 16px;border-bottom:1px solid #e8edf1;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.status{font-size:13px;color:var(--muted)}
+.status:before{content:"";display:inline-block;width:8px;height:8px;background:#d6a84f;border-radius:50%;margin-right:7px}
+select,.small-btn{border:1px solid #d8e0e7;background:#fff;border-radius:8px;padding:8px 10px;color:var(--text);font-size:14px}
+.small-btn{cursor:pointer;font-weight:700}
+.messages{height:min(58vh,570px);min-height:340px;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:15px}
+.welcome{margin:auto;text-align:center;max-width:540px;color:var(--muted)}
+.welcome .spark{font-size:35px}
+.welcome h2{color:var(--navy);margin:5px 0}
+.suggestions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.suggestion{border:1px solid #dce3e9;background:#f8fafb;border-radius:20px;padding:8px 12px;cursor:pointer;color:#23445e;font-size:13px}
+.msg{max-width:86%;padding:12px 15px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.user{align-self:flex-end;background:#e8f0f7;color:#18334b;border-bottom-right-radius:4px}
+.msg.assistant{align-self:flex-start;background:#f5f7f9;border:1px solid #e8edf1;border-bottom-left-radius:4px}
+.msg-label{display:block;font-size:11px;font-weight:800;color:#66727e;margin-bottom:4px}
+.typing{color:#66727e;font-size:14px;padding:4px 2px}
+.composer{border-top:1px solid #e8edf1;padding:13px;display:flex;gap:9px;align-items:flex-end}
+textarea{flex:1;resize:none;min-height:48px;max-height:140px;padding:13px;border:1px solid #d8e0e7;border-radius:10px;font:15px Arial;outline:none}
+textarea:focus{border-color:#527b9b;box-shadow:0 0 0 3px #527b9b20}
+.send{border:0;border-radius:10px;background:var(--gold);color:#102033;font-weight:800;padding:0 19px;min-height:48px;cursor:pointer}
+.send:disabled{opacity:.55;cursor:not-allowed}
+.note{font-size:12px;color:#7a858e;text-align:center;padding:0 16px 14px}
+footer{text-align:center;color:#7a858e;font-size:13px;padding:22px}
+@media(max-width:600px){main{margin:18px auto}.intro h1{font-size:26px}.messages{padding:14px;min-height:330px;height:58vh}.msg{max-width:94%}.composer{padding:10px}.send{padding:0 14px}.logo{font-size:22px}}
+</style>
+</head>
+<body>
+<header><div class="header-inner"><a class="logo" href="index.html">Pak Point</a><a class="back" href="index.html">← Back to Website</a></div></header>
+<main>
+<div class="intro"><h1>Pak Point AI Assistant</h1><p>Ask questions and get helpful information in your language.</p></div>
+<div class="chat-shell">
+<div class="toolbar"><span class="status" id="status">Ready to chat</span><div><label for="language" style="font-size:13px;margin-right:5px">Reply language</label><select id="language"><option value="same">Match my language</option><option value="Urdu">اردو</option><option value="Roman Urdu">Roman Urdu</option><option value="Saraiki">Saraiki</option><option value="English">English</option></select> <button class="small-btn" id="newChat" type="button">New chat</button></div></div>
+<div class="messages" id="messages" aria-live="polite">
+<div class="welcome" id="welcome"><div class="spark">✦</div><h2>Assalam-o-Alaikum!</h2><p>I'm Pak Point AI. Ask me about education, technology, general knowledge, writing, translation, or any topic you'd like to understand.</p><div class="suggestions"><button class="suggestion" type="button">پاکستان کی تاریخ بتائیں</button><button class="suggestion" type="button">Explain AI in simple words</button><button class="suggestion" type="button">Mujhe business idea dein</button></div></div>
+</div>
+<div class="composer"><textarea id="prompt" rows="1" maxlength="4000" placeholder="Write your question here..."></textarea><button class="send" id="send" type="button">Send</button></div>
+<div class="note">AI can make mistakes. Verify important, legal, medical, financial, and breaking-news information from reliable sources.</div>
+</div>
+</main>
+<footer>© 2026 Pak Point. All Rights Reserved.</footer>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app-check.js";
+import { getAI, getGenerativeModel, GoogleAIBackend } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-ai.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDrjmV4GAHg2HPj_8961MPh1msjVU7dcdY",
+  authDomain: "whatsapp-group-hub-2513a.firebaseapp.com",
+  projectId: "whatsapp-group-hub-2513a",
+  storageBucket: "whatsapp-group-hub-2513a.firebasestorage.app",
+  messagingSenderId: "997714850617",
+  appId: "1:997714850617:web:512eaa8131b882da25aee8",
+  measurementId: "G-G3D7KLK9BM"
+};
+
+const app = initializeApp(firebaseConfig);
+
+// App Check: use the reCAPTCHA Enterprise site key for pak-point.github.io.
+// Do not put a reCAPTCHA secret key in browser code.
+initializeAppCheck(app, {
+  provider: new ReCaptchaEnterpriseProvider("6Ldu0icuAAAAAFcmIlwIES8V_W2mcZUQuZMF5_qt"),
+  isTokenAutoRefreshEnabled: true
+});
+
+const ai = getAI(app, { backend: new GoogleAIBackend() });
+const model = getGenerativeModel(ai, {
+  model: "gemini-4-hydrogen",
+  systemInstruction: "You are Pak Point AI, a helpful, respectful general-information assistant. Give clear, accurate, well-organized answers. Match the user's language unless they choose another language. Support Urdu, Roman Urdu, Saraiki and English. Explain difficult topics simply. Do not claim to be Claude or an official government service. Be transparent when unsure, do not invent current facts, and advise users to verify important information from reliable official sources. Do not request passwords, OTPs, full bank details, or sensitive identity information."
+});
+let chat = model.startChat();
+let busy = false;
+const messages = document.getElementById("messages");
+const promptBox = document.getElementById("prompt");
+const sendButton = document.getElementById("send");
+const status = document.getElementById("status");
+const welcome = document.getElementById("welcome");
+
+function addMessage(role, text) {
+  if (welcome) welcome.remove();
+  const bubble = document.createElement("div");
+  bubble.className = "msg " + role;
+  const label = document.createElement("span");
+  label.className = "msg-label";
+  label.textContent = role === "user" ? "You" : "Pak Point AI";
+  const body = document.createElement("div");
+  body.textContent = text;
+  bubble.append(label, body);
+  messages.appendChild(bubble);
+  messages.scrollTop = messages.scrollHeight;
+  return body;
+}
+function setBusy(value) {
+  busy = value;
+  sendButton.disabled = value;
+  sendButton.textContent = value ? "..." : "Send";
+  status.textContent = value ? "Thinking..." : "Ready to chat";
+}
+async function sendMessage(text) {
+  const question = text.trim();
+  if (!question || busy) return;
+  addMessage("user", question);
+  promptBox.value = "";
+  const language = document.getElementById("language").value;
+  const languageHint = language === "same" ? "Reply in the same language as the user's message." : "Reply in " + language + ".";
+  const typing = document.createElement("div");
+  typing.className = "typing";
+  typing.textContent = "Pak Point AI is thinking…";
+  messages.appendChild(typing);
+  messages.scrollTop = messages.scrollHeight;
+  setBusy(true);
+  try {
+    const result = await chat.sendMessage(languageHint + "\n\nUser's question: " + question);
+    typing.remove();
+    addMessage("assistant", result.response.text() || "I couldn't create a text response. Please try again.");
+  } catch (error) {
+    typing.remove();
+    const message = String(error?.message || error);
+    let help = "Sorry, the AI service could not respond. Please try again.";
+    if (/403|PERMISSION_DENIED|App Check|API has not been used|not enabled/i.test(message)) {
+      help += "\n\nFirebase Console mein AI Logic enable karein aur Gemini Developer API setup complete karein. App Check configuration bhi check karein.";
+    } else if (/429|quota|RESOURCE_EXHAUSTED/i.test(message)) {
+      help += "\n\nAI usage limit ya quota temporarily complete ho sakta hai. Thori dair baad dobara koshish karein.";
+    }
+    const safeDetail = message.replace(/AIza[0-9A-Za-z_-]{20,}/g, "[hidden]").slice(0, 500);
+    addMessage("assistant", help + "\n\nError detail: " + safeDetail);
+    console.error("Pak Point AI error:", error);
+  } finally {
+    setBusy(false);
+    promptBox.focus();
+  }
+}
+sendButton.addEventListener("click", () => sendMessage(promptBox.value));
+promptBox.addEventListener("keydown", event => {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    sendMessage(promptBox.value);
+  }
+});
+document.querySelectorAll(".suggestion").forEach(button => {
+  button.addEventListener("click", () => sendMessage(button.textContent));
+});
+document.getElementById("newChat").addEventListener("click", () => {
+  if (busy) return;
+  chat = model.startChat();
+  messages.innerHTML = '<div class="welcome" id="welcome"><div class="spark">✦</div><h2>New conversation</h2><p>What would you like to know?</p></div>';
+  promptBox.value = "";
+  status.textContent = "New chat started";
+});
+</script>
+</body>
+</html>
