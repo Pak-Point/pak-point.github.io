@@ -1,161 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pak Point | Latest Pakistan & World News</title>
-  <meta name="description" content="Pak Point brings you the latest Pakistan and world news, breaking news, technology, sports, business, education, motivation and knowledge.">
-  <meta name="keywords" content="Pak Point, Pakistan News, Latest News, Breaking News, Pakistan, World News, Stories, Motivation, Knowledge">
-  <meta name="author" content="Pak Point">
-  <link rel="canonical" href="https://pak-point.github.io/">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://pak-point.github.io/">
-  <meta property="og:title" content="Pak Point | Latest Pakistan & World News">
-  <meta property="og:description" content="Latest Pakistan and world news, articles, stories, motivation and useful knowledge.">
-  <meta property="og:site_name" content="Pak Point">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Pak Point | Latest Pakistan & World News">
-  <meta name="twitter:description" content="Latest Pakistan and world news, articles, stories, motivation and useful knowledge.">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;color:#17212b;line-height:1.6}
-    header{background:linear-gradient(135deg,#0b1f33,#123b5d);color:#fff;padding:13px 20px;position:sticky;top:0;z-index:1000;box-shadow:0 3px 14px rgba(0,0,0,.16)}
-    .header-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:15px}
-    .logo{font-size:28px;font-weight:bold;white-space:nowrap;letter-spacing:.2px}
-    nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-    nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:8px 10px;border-radius:7px}
-    nav a:hover{background:rgba(214,168,79,.18);color:#fff}
-    .menu-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:9px;font-size:25px;line-height:1;padding:7px 11px;cursor:pointer}
-    .breaking-bar{background:#fff;color:#0b1f33;border-bottom:2px solid #d6a84f;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden}
-    .breaking-inner{max-width:1200px;margin:auto;display:flex;align-items:center;gap:12px;min-height:42px;padding:0 15px;font-size:14px;font-weight:600}
-    .breaking-label{background:#b52b2b;color:#fff;padding:5px 10px;border-radius:6px;white-space:nowrap}
-    .breaking-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .hero{background:linear-gradient(135deg,#102f4b,#17627c 55%,#0f766e);color:#fff;text-align:center;padding:52px 20px 58px}
-    .hero h1{font-size:42px;font-weight:800;margin-bottom:10px;letter-spacing:-.5px}
-    .hero p{font-size:19px;max-width:700px;margin:auto}
-    .search-box{max-width:760px;margin:22px auto 0;display:flex;gap:8px;align-items:stretch}
-    .search-box input{flex:1;padding:13px;border:1px solid #dce2e7;background:#fff;border-radius:7px;font-size:16px;outline:none;box-shadow:0 5px 18px rgba(0,0,0,.14)}
-    .search-box button{padding:13px 20px;border:none;border-radius:7px;background:#d6a84f;color:#102033;font-weight:800;cursor:pointer;min-width:120px;box-shadow:0 5px 18px rgba(0,0,0,.14)}
-    .search-box button:hover{background:#c79838}
-    main{max-width:1240px;margin:auto;padding:30px 15px}
-    section{margin-bottom:45px}
-    .section-title{font-size:27px;font-weight:800;margin-bottom:18px;color:#0b1f33;border-left:5px solid #d6a84f;padding-left:10px}
-    .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-    .card{background:#fff;border:1px solid #e3e7eb;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(11,31,51,.07);transition:.3s;cursor:pointer}
-    .card:hover{transform:translateY(-4px);box-shadow:0 9px 24px rgba(11,31,51,.13)}
-    .card-image{width:100%;height:190px;object-fit:cover;background:#ddd}
-    .card-content{padding:17px}.card h3{font-size:20px;margin-bottom:8px;color:#222}
-    .category{display:inline-block;background:#0b1f33;color:#fff;padding:4px 9px;border-radius:4px;font-size:12px;margin-bottom:8px}
-    .read-article{display:inline-block;margin-top:10px;text-decoration:none;font-weight:700;color:#0b1f33}
-    .date{color:#777;font-size:13px;margin-top:10px}
-    .empty{background:#fff;padding:25px;text-align:center;border-radius:8px;color:#777}
-    .contact-box{background:#fff;padding:30px 20px;border-radius:10px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.08);border-top:4px solid #d6a84f}
-    .contact-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:20px}
-    .contact-buttons a{text-decoration:none;color:#fff;padding:11px 18px;border-radius:6px;font-weight:bold}
-    .whatsapp{background:#25d366}.email{background:#444}.facebook{background:#1877f2}
-    footer{background:#0b1f33!important;color:#fff;text-align:center;padding:25px 15px;margin-top:30px}
-    .admin-link{color:#fff;text-decoration:none;display:inline-block;margin-top:8px;opacity:.9}
-    .modal{display:none;position:fixed;z-index:2000;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.75);overflow-y:auto;padding:30px 15px}
-    .modal-content{max-width:800px;margin:auto;background:#fff;border-radius:10px;padding:25px;position:relative}
-    .modal-content img{width:100%;max-height:400px;object-fit:cover;border-radius:8px;margin-bottom:20px}
-    .modal-content h2{margin-bottom:10px;color:#075e54}.modal-text{white-space:pre-wrap;font-size:17px;line-height:1.8}
-    .close{position:absolute;right:15px;top:8px;font-size:32px;cursor:pointer;color:#555}
-    .loading{text-align:center;padding:40px;font-size:18px;color:#075e54}
-    .ad-container{width:100%;min-height:90px;margin:20px 0;display:flex;align-items:center;justify-content:center;background:#fff;border-radius:8px;overflow:hidden}
-    .ad-label{color:#888;font-size:12px;text-align:center}.info-page{background:#fff;padding:25px;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.08)}
-    .info-page h3{color:#075e54;margin-bottom:12px}.info-page p{margin-bottom:14px}
-    @media(max-width:700px){
-      header{padding:11px 14px}.header-container{position:relative;min-height:48px}.logo{font-size:24px}.menu-toggle{display:block;margin-left:auto}
-      nav{display:none;position:absolute;top:58px;left:0;right:0;background:#075e54;padding:12px 10px 15px;border-radius:0 0 14px 14px;box-shadow:0 8px 18px rgba(0,0,0,.18);gap:5px;flex-direction:column;align-items:stretch}
-      nav.open{display:flex}nav a{font-size:16px;padding:11px 14px;border-radius:8px;text-align:left}
-      .breaking-inner{min-height:40px;padding:0 10px;font-size:13px}.breaking-label{font-size:12px;padding:4px 8px}
-      .hero{padding:35px 16px 40px}.hero h1{font-size:31px}.hero p{font-size:16px;line-height:1.55}
-      .search-box{display:flex;flex-direction:column;gap:9px;margin-top:20px}.search-box input,.search-box button{width:100%;min-height:50px}.search-box button{font-size:16px}
-      main{padding:24px 12px}section{margin-bottom:32px}.section-title{font-size:23px}.posts{grid-template-columns:1fr;gap:14px}.card-image{height:180px}
-    }
-  
-/* Pak Point Professional News Theme */
-:root{--navy:#0b1f33;--navy2:#123b5d;--accent:#d6a84f;--bg:#f4f6f8;--text:#17212b;--muted:#66727e}
-body{background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
-header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:13px 20px;box-shadow:0 3px 14px rgba(0,0,0,.16)}
-.header-container{max-width:1200px}
-.logo{font-size:28px;letter-spacing:.2px}
-nav a{font-size:14px;font-weight:600;border-radius:7px;padding:8px 10px}
-nav a:hover{background:rgba(214,168,79,.18);color:#fff}
-.breaking-bar{background:#fff;color:var(--navy);border-bottom:2px solid var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.breaking-label{background:#b52b2b}
-.hero{background:linear-gradient(135deg,#102f4b,#17627c 55%,#0f766e);padding:52px 20px 58px}
-.hero h1{font-size:42px;font-weight:800}
-.hero p{font-size:19px}
-.search-box input{border:1px solid #dce2e7;background:#fff;box-shadow:0 5px 18px rgba(0,0,0,.14)}
-.search-box button{background:var(--accent);color:#102033;font-weight:800;box-shadow:0 5px 18px rgba(0,0,0,.14)}
-.search-box button:hover{background:#c79838}
-main{max-width:1240px}
-.section-title{color:var(--navy);border-left-color:var(--accent)}
-.card{border:1px solid #e3e7eb;border-radius:12px;background:#fff;box-shadow:0 3px 12px rgba(11,31,51,.07)}
-.card:hover{transform:translateY(-4px);box-shadow:0 9px 24px rgba(11,31,51,.13)}
-.category{background:var(--navy);color:#fff}
-.read-article{color:var(--navy)}
-.contact-box{border-top:4px solid var(--accent)}
-footer{background:var(--navy)!important;color:#fff}
-@media(max-width:700px){header{padding:11px 14px}.logo{font-size:24px}.hero{padding:35px 16px 40px}.hero h1{font-size:31px}.hero p{font-size:16px}.search-box button{background:var(--accent);color:#102033}.section-title{font-size:23px}}
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pak Point | Pakistan & World News, Stories and Knowledge</title>
+<meta name="description" content="Read the latest Pakistan and world news, useful articles, inspiring stories, motivation and knowledge on Pak Point.">
+<meta name="keywords" content="Pak Point, Pakistan News, World News, Articles, Stories, Motivation, Knowledge">
+<meta name="author" content="Pak Point">
+<link rel="canonical" href="https://pak-point.github.io/">
+<meta name="theme-color" content="#102a43">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pak-point.github.io/">
+<meta property="og:title" content="Pak Point | Latest News, Stories & Knowledge">
+<meta property="og:description" content="Pakistan and world news, useful articles, stories, motivation and knowledge.">
+<meta property="og:site_name" content="Pak Point">
+<meta name="twitter:card" content="summary">
+<style>
+:root{--ink:#172b3a;--navy:#102a43;--navy2:#183f5b;--gold:#d8ad59;--paper:#f4f6f8;--muted:#718096;--line:#e5eaf0;--white:#fff;--green:#137c70}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 Arial,Helvetica,sans-serif}a{color:inherit;text-decoration:none}button,input{font:inherit}
+.topline{background:#0b1e30;color:#dbe5ee;font-size:12px}.topline-inner{max-width:1180px;margin:auto;padding:7px 18px;display:flex;justify-content:space-between;gap:12px}.topline a{color:#f1d28f}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:1000}.head-inner{max-width:1180px;margin:auto;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:flex;align-items:center;gap:11px;min-width:max-content}.brand-mark{width:43px;height:43px;border-radius:12px;background:linear-gradient(145deg,var(--navy),#24617a);display:grid;place-items:center;color:#fff;font-weight:900;font-size:20px;box-shadow:0 5px 12px #102a4326}.brand-name{font-size:26px;line-height:1.1;font-weight:900;letter-spacing:-.7px;color:var(--navy)}.brand-name span{color:var(--green)}.brand-tag{font-size:10px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
+nav{display:flex;align-items:center;gap:4px}nav a{padding:9px 11px;border-radius:7px;font-size:13px;font-weight:700;color:#35495b}nav a:hover,nav a.active{background:#edf4f5;color:var(--green)}.menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;font-size:22px;color:var(--navy)}
+.breaking{background:#fff;border-bottom:1px solid var(--line)}.breaking-inner{max-width:1180px;margin:auto;padding:9px 18px;display:flex;align-items:center;gap:12px;min-width:0}.breaking-label{background:#bd3434;color:#fff;border-radius:4px;padding:4px 9px;font-size:10px;font-weight:900;letter-spacing:.7px;white-space:nowrap}.breaking-copy{font-size:13px;font-weight:600;color:#435466;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hero{background:linear-gradient(115deg,rgba(10,32,51,.96),rgba(18,73,91,.9)),radial-gradient(circle at 80% 10%,#368d8b,transparent 40%);color:#fff}.hero-inner{max-width:1180px;margin:auto;padding:45px 18px 42px}.eyebrow{color:#f1d28f;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.hero h1{font-size:clamp(30px,5vw,46px);line-height:1.12;margin:10px 0 12px;max-width:720px;letter-spacing:-1.2px}.hero p{margin:0;color:#d6e2eb;font-size:16px;max-width:650px}.search{display:flex;max-width:610px;margin-top:23px;background:#fff;border-radius:8px;padding:5px;box-shadow:0 10px 30px #071a2c55}.search input{flex:1;min-width:0;border:0;outline:0;padding:10px 12px;color:var(--ink);background:transparent}.search button{border:0;border-radius:6px;padding:10px 20px;background:var(--gold);color:#152b3e;font-weight:800;cursor:pointer}.search button:hover{filter:brightness(.96)}
+.page{max-width:1180px;margin:30px auto;padding:0 18px}.ad-slot{min-height:70px;margin:0 0 24px;display:flex;align-items:center;justify-content:center;color:#a0a9b2;font-size:10px;letter-spacing:1px;text-transform:uppercase}.layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:28px;align-items:start}.section{margin:0 0 34px;scroll-margin-top:100px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:2px solid var(--line);margin-bottom:17px;padding-bottom:9px}.section-title{font-size:22px;line-height:1.25;margin:0;color:var(--navy);font-weight:900}.section-title:before{content:"";display:inline-block;width:5px;height:22px;background:var(--gold);border-radius:3px;margin-right:10px;vertical-align:-4px}.section-note{font-size:11px;color:var(--muted)}
+.posts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{background:#fff;border:1px solid var(--line);border-radius:11px;overflow:hidden;transition:transform .2s,box-shadow .2s;box-shadow:0 3px 12px #102a4308}.card:hover{transform:translateY(-3px);box-shadow:0 12px 25px #102a4314}.card-image{display:block;width:100%;height:190px;object-fit:cover;background:linear-gradient(135deg,#dce6e9,#eef2f4)}.card-content{padding:15px 16px 16px}.category{display:inline-block;background:#edf4f3;color:var(--green);font-size:10px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:4px 8px;border-radius:4px;margin-bottom:9px}.card h3{font-size:18px;line-height:1.35;margin:0 0 8px;color:#1b3041}.excerpt{font-size:13px;line-height:1.55;color:#667687;margin:0 0 12px}.card-meta{display:flex;justify-content:space-between;gap:8px;align-items:center;border-top:1px solid #eef1f4;padding-top:10px;color:#8a96a2;font-size:11px}.read{font-weight:800;color:var(--green)}.empty,.loading{grid-column:1/-1;background:#fff;border:1px solid var(--line);border-radius:9px;padding:24px;text-align:center;color:#7c8995;font-size:14px}
+.sidebar-box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:20px}.side-title{font-size:16px;color:var(--navy);font-weight:900;margin:0 0 14px;padding-bottom:9px;border-bottom:2px solid var(--line)}.side-title:before{content:"";display:inline-block;width:4px;height:17px;background:var(--gold);margin-right:8px;vertical-align:-3px}.recent-list{list-style:none;padding:0;margin:0}.recent-list li{padding:10px 0;border-bottom:1px solid #edf0f3}.recent-list li:last-child{border:0;padding-bottom:0}.recent-list a{font-size:13px;font-weight:700;line-height:1.4;display:block}.recent-list a:hover{color:var(--green)}.recent-date{font-size:10px;color:#929eaa}.category-list{display:flex;flex-wrap:wrap;gap:7px}.category-list a{font-size:11px;padding:6px 9px;background:#f1f5f7;border-radius:5px;color:#516274;font-weight:700}.category-list a:hover{background:#e3efed;color:var(--green)}.side-about{font-size:13px;color:#6a7886;margin:0}.side-contact{display:block;background:var(--navy);color:#fff;text-align:center;border-radius:6px;padding:10px;margin-top:13px;font-size:12px;font-weight:800}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.info-page{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}.info-page h3{margin:0 0 8px;color:var(--navy);font-size:17px}.info-page p{margin:0 0 10px;color:#667687;font-size:13px}.contact-box{background:#fff;border:1px solid var(--line);border-radius:10px;text-align:center;padding:25px}.contact-buttons{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:15px}.contact-buttons a{color:#fff;padding:10px 17px;border-radius:6px;font-weight:800;font-size:12px}.whatsapp{background:#1eaa63}.email{background:#435466}.facebook{background:#1877f2}
+footer{background:#0b1e30;color:#d4e0e8;margin-top:25px}.footer-inner{max-width:1180px;margin:auto;padding:30px 18px 18px;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:25px}.footer-brand{font-size:23px;font-weight:900;color:#fff}.footer-brand span{color:var(--gold)}footer p{font-size:12px;color:#aebdca;max-width:390px;margin:8px 0}footer h4{margin:3px 0 10px;color:#fff;font-size:13px}footer a{display:block;font-size:12px;color:#bdcbd6;margin:7px 0}footer a:hover{color:#f1d28f}.copyright{border-top:1px solid #ffffff1c;text-align:center;padding:13px;font-size:11px;color:#91a3b1}.admin-link{display:inline-block!important;color:#f1d28f!important}
+.modal{display:none;position:fixed;inset:0;z-index:2000;background:#061522c9;overflow:auto;padding:25px 14px}.modal-content{max-width:780px;margin:25px auto;background:#fff;border-radius:12px;padding:25px;position:relative}.modal-content img{width:100%;max-height:390px;object-fit:cover;border-radius:8px;margin-bottom:15px}.modal-content h2{margin:8px 35px 12px 0;color:var(--navy);line-height:1.3}.modal-text{white-space:pre-wrap;font-size:16px;line-height:1.85;color:#35495b}.close{position:absolute;right:16px;top:8px;font-size:30px;cursor:pointer;color:#657482}.date{font-size:11px;color:#8794a0}.ad-label{font-size:10px}
+@media(max-width:850px){.head-inner{flex-wrap:wrap}.menu-toggle{display:block}nav{display:none;position:absolute;left:12px;right:12px;top:72px;background:#fff;padding:10px;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 25px #102a4322;align-items:stretch;flex-direction:column}nav.open{display:flex}nav a{padding:11px}.layout{grid-template-columns:minmax(0,1fr) 250px;gap:18px}}
+@media(max-width:650px){.topline-inner{padding:6px 13px}.topline-inner span:last-child{display:none}.head-inner{padding:11px 14px}.brand-mark{width:39px;height:39px}.brand-name{font-size:23px}.brand-tag{font-size:9px}.hero-inner{padding:35px 15px 32px}.hero p{font-size:14px}.search{margin-top:18px}.search button{padding:9px 13px}.page{padding:0 13px;margin:23px auto}.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sidebar-box{margin:0;padding:14px}.posts{gap:12px}.card-image{height:145px}.card-content{padding:12px}.card h3{font-size:15px}.excerpt{font-size:12px}.section-title{font-size:20px}.info-grid{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr}.footer-inner>div:first-child{grid-column:1/-1}}
+@media(max-width:390px){.posts{grid-template-columns:1fr}.card-image{height:180px}.sidebar{grid-template-columns:1fr}.search button{font-size:13px}}
 </style>
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7778320330172388" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7778320330172388" crossorigin="anonymous"></script>
 </head>
 <body>
-<header><div class="header-container"><div class="logo">Pak Point</div><button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button><nav><a href="#home">Home</a><a href="#articles">Articles</a><a href="#stories">Stories</a><a href="#motivation">Motivation</a><a href="#knowledge">Knowledge</a><a href="#contact">Contact</a><a href="#about">About</a><a href="#privacy">Privacy</a><a href="admin.html">Admin</a></nav></div></header>
-<div class="breaking-bar"><div class="breaking-inner"><span class="breaking-label">BREAKING</span><span class="breaking-text">Latest Pakistan &amp; World News — Stay updated with Pak Point</span></div></div>
-<section class="hero" id="home"><h1>Pak Point</h1><p>Latest Pakistan &amp; World News, Articles, Stories, Motivation and Knowledge</p><div class="search-box"><input type="text" id="searchInput" placeholder="Search articles, stories..."><button onclick="searchPosts()">Search</button></div></section>
-<div class="ad-container"><div class="ad-label">Advertisement</div></div>
-<main>
-<section id="articles"><h2 class="section-title">Latest Articles</h2><div id="articlesContainer" class="posts"><div class="loading">Loading articles...</div></div></section>
-<section id="stories"><h2 class="section-title">Latest Stories</h2><div id="storiesContainer" class="posts"><div class="loading">Loading stories...</div></div></section>
-<section id="motivation"><h2 class="section-title">Motivation</h2><div id="motivationContainer" class="posts"><div class="loading">Loading motivation posts...</div></div></section>
-<section id="knowledge"><h2 class="section-title">Knowledge</h2><div id="knowledgeContainer" class="posts"><div class="loading">Loading knowledge posts...</div></div></section>
-<div class="ad-container"><div class="ad-label">Advertisement</div></div>
-<section id="about"><h2 class="section-title">About Us</h2><div class="info-page"><h3>About Pak Point</h3><p>Pak Point is a digital platform for Pakistan and world news, articles, stories, motivation and useful knowledge.</p><p>Our aim is to present useful and informative content in a simple and accessible format for our readers.</p></div></section>
-<section id="privacy"><h2 class="section-title">Privacy Policy</h2><div class="info-page"><h3>Privacy Policy</h3><p>Pak Point may use cookies and third-party advertising services to improve the website experience and display relevant advertisements.</p><p>Third-party advertising providers, including Google, may use cookies or similar technologies to serve ads based on a user's visits to this and other websites.</p><p>Users can manage advertising and cookie preferences through their browser and available Google privacy controls.</p><p>If you have questions about this Privacy Policy, please contact Pak Point using the contact information provided on this website.</p></div></section>
-<section id="contact"><h2 class="section-title">Contact Us</h2><div class="contact-box"><h3>Pak Point سے رابطہ کریں</h3><p>News, Articles یا کسی بھی معلومات کے لیے ہم سے رابطہ کریں۔</p><div class="contact-buttons"><a class="whatsapp" href="https://wa.me/923397381786" target="_blank">WhatsApp</a><a class="email" href="mailto:nk7741595@gmail.com">Email</a><a class="facebook" href="https://www.facebook.com/share/1TgtXJRkXd/" target="_blank">Facebook</a></div></div></section>
-</main>
-<footer><p>© 2026 Pak Point. All Rights Reserved.</p><a class="admin-link" href="admin.html">Admin Panel</a></footer>
-<div id="articleModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><img id="modalImage" src="" alt="Article Image" style="display:none;"><span id="modalCategory" class="category"></span><h2 id="modalTitle"></h2><div id="modalText" class="modal-text"></div><p id="modalDate" class="date"></p></div></div>
+<div class="topline"><div class="topline-inner"><span>Welcome to Pak Point — News, stories and useful knowledge</span><span>Stay informed • Stay inspired</span></div></div>
+<header><div class="head-inner"><a class="brand" href="#home" aria-label="Pak Point Home"><span class="brand-mark">P</span><span><span class="brand-name">Pak<span>Point</span></span><span class="brand-tag">News • Stories • Knowledge</span></span></a><button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button><nav><a class="active" href="#home">Home</a><a href="#articles">Articles</a><a href="#stories">Stories</a><a href="#motivation">Motivation</a><a href="#knowledge">Knowledge</a><a href="#about">About</a><a href="#contact">Contact</a><a href="admin.html">Admin</a></nav></div></header>
+<div class="breaking"><div class="breaking-inner"><span class="breaking-label">PAK POINT</span><span class="breaking-copy">Your daily destination for Pakistan &amp; world news, informative articles, inspiring stories and knowledge.</span></div></div>
+<section class="hero" id="home"><div class="hero-inner"><div class="eyebrow">Welcome to Pak Point</div><h1>Discover the stories that<br>matter to you.</h1><p>Latest Pakistan and world updates, helpful articles, inspiring stories, motivation and knowledge — all in one place.</p><div class="search"><input id="searchInput" type="search" placeholder="Search news, articles and stories..." aria-label="Search posts"><button id="searchButton" type="button">Search</button></div></div></section>
+<main class="page"><div class="ad-slot"><span class="ad-label">Advertisement</span></div><div class="layout"><div class="main-column">
+<section class="section" id="articles"><div class="section-head"><h2 class="section-title">Latest Articles</h2><span class="section-note">Fresh updates from Pak Point</span></div><div id="articlesContainer" class="posts"><div class="loading">Loading articles...</div></div></section>
+<section class="section" id="stories"><div class="section-head"><h2 class="section-title">Stories</h2><span class="section-note">Stories worth sharing</span></div><div id="storiesContainer" class="posts"><div class="loading">Loading stories...</div></div></section>
+<section class="section" id="motivation"><div class="section-head"><h2 class="section-title">Motivation</h2></div><div id="motivationContainer" class="posts"><div class="loading">Loading posts...</div></div></section>
+<section class="section" id="knowledge"><div class="section-head"><h2 class="section-title">Knowledge</h2></div><div id="knowledgeContainer" class="posts"><div class="loading">Loading posts...</div></div></section>
+<div class="ad-slot"><span class="ad-label">Advertisement</span></div>
+<section class="section" id="about"><div class="section-head"><h2 class="section-title">About Pak Point</h2></div><div class="info-page"><h3>Information that matters</h3><p>Pak Point is a digital platform sharing Pakistan and world news, useful articles, stories, motivation and knowledge.</p><p>Our aim is to present informative and engaging content in a simple, accessible experience for readers everywhere.</p></div></section>
+<section class="section" id="privacy"><div class="section-head"><h2 class="section-title">Privacy Policy</h2></div><div class="info-page"><h3>Your privacy matters</h3><p>Pak Point may use cookies and third-party advertising services to improve the website experience and display relevant advertisements.</p><p>Third-party advertising providers, including Google, may use cookies or similar technologies to serve ads based on a user's visits to this and other websites. Users can manage cookie preferences through their browser and available provider controls.</p><p>For privacy questions, contact us using the details on this website.</p></div></section>
+<section class="section" id="contact"><div class="section-head"><h2 class="section-title">Contact Us</h2></div><div class="contact-box"><h3>We would love to hear from you</h3><p>For news tips, feedback, articles or general questions, get in touch with Pak Point.</p><div class="contact-buttons"><a class="whatsapp" href="https://wa.me/923397381786" target="_blank" rel="noopener">WhatsApp</a><a class="email" href="mailto:nk7741595@gmail.com">Email Us</a><a class="facebook" href="https://www.facebook.com/share/1E5XRyfgjd/" target="_blank" rel="noopener">Facebook</a></div></div></section>
+</div><aside class="sidebar"><div class="sidebar-box"><h3 class="side-title">About Pak Point</h3><p class="side-about">News, useful information, inspiring stories and knowledge to keep you informed and motivated.</p><a class="side-contact" href="#contact">Get in touch</a></div><div class="sidebar-box"><h3 class="side-title">Recent Posts</h3><ul id="recentPosts" class="recent-list"><li class="recent-date">Loading recent posts...</li></ul></div><div class="sidebar-box"><h3 class="side-title">Explore Categories</h3><div class="category-list"><a href="#articles">Articles</a><a href="#stories">Stories</a><a href="#motivation">Motivation</a><a href="#knowledge">Knowledge</a></div></div><div class="sidebar-box"><h3 class="side-title">Stay Connected</h3><p class="side-about">Follow Pak Point for updates and new content.</p><a class="side-contact" href="https://www.facebook.com/share/1E5XRyfgjd/" target="_blank" rel="noopener">Visit Facebook Page</a></div></aside></div></main>
+<footer><div class="footer-inner"><div><div class="footer-brand">Pak<span>Point</span></div><p>Pakistan and world news, useful articles, inspiring stories, motivation and knowledge — all in one place.</p></div><div><h4>Explore</h4><a href="#home">Home</a><a href="#articles">Latest Articles</a><a href="#stories">Stories</a><a href="#knowledge">Knowledge</a></div><div><h4>Information</h4><a href="#about">About Us</a><a href="#privacy">Privacy Policy</a><a href="#contact">Contact Us</a><a class="admin-link" href="admin.html">Admin Panel</a></div></div><div class="copyright">© 2026 Pak Point. All Rights Reserved.</div></footer>
+<div id="articleModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><img id="modalImage" src="" alt="Article image" style="display:none"><span id="modalCategory" class="category"></span><h2 id="modalTitle"></h2><div id="modalText" class="modal-text"></div><p id="modalDate" class="date"></p></div></div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig={apiKey:"AIzaSyDrjmV4GAHg2HPj_8961MPh1msjVU7dcdY",authDomain:"whatsapp-group-hub-2513a.firebaseapp.com",projectId:"whatsapp-group-hub-2513a",storageBucket:"whatsapp-group-hub-2513a.firebasestorage.app",messagingSenderId:"997714850617",appId:"1:997714850617:web:512eaa8131b882da25aee8",measurementId:"G-G3D7KLK9BM"};
 const app=initializeApp(firebaseConfig);const db=getFirestore(app);let allPosts=[];
-async function loadPosts(){try{const articlesRef=collection(db,"articles");const q=query(articlesRef,where("status","==","published"));const snapshot=await getDocs(q);allPosts=[];snapshot.forEach((doc)=>{const data=doc.data();allPosts.push({id:doc.id,...data});});allPosts.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));renderAll();}catch(error){console.error("Firebase Error:",error);showError("articlesContainer");showError("storiesContainer");showError("motivationContainer");showError("knowledgeContainer");}}
-function showError(containerId){document.getElementById(containerId).innerHTML=`<div class="empty">Posts load nahi ho rahe. Firebase connection ya Firestore rules check karein.</div>`;}
-function renderAll(posts=allPosts){const articles=posts.filter(post=>post.type!=="Story");const stories=posts.filter(post=>post.type==="Story");const motivation=posts.filter(post=>String(post.category||"").toLowerCase().includes("motivation"));const knowledge=posts.filter(post=>String(post.category||"").toLowerCase().includes("knowledge"));renderPosts("articlesContainer",articles);renderPosts("storiesContainer",stories);renderPosts("motivationContainer",motivation);renderPosts("knowledgeContainer",knowledge);}
-function renderPosts(containerId,posts){const container=document.getElementById(containerId);if(!posts.length){container.innerHTML=`<div class="empty">No posts available yet.</div>`;return;}container.innerHTML="";posts.forEach(post=>{const card=document.createElement("div");card.className="card";const image=post.image||post.imageUrl||"";const title=post.title||"Untitled";const category=post.category||post.type||"Article";const date=post.date||"";card.innerHTML=`${image?`<img class="card-image" src="${escapeHtml(image)}" alt="${escapeHtml(title)}">`:`<div class="card-image"></div>`}<div class="card-content"><span class="category">${escapeHtml(category)}</span><h3>${escapeHtml(title)}</h3><p class="date">${escapeHtml(String(date))}</p><a class="read-article" href="article.html?id=${encodeURIComponent(post.id)}" onclick="event.stopPropagation();">Read Full Article →</a></div>`;card.addEventListener("click",(event)=>{if(event.target.closest("a"))return;window.location.href=new URL("article.html?id="+encodeURIComponent(post.id),window.location.href).href;});container.appendChild(card);});}
-function openModal(post){const modal=document.getElementById("articleModal"),image=document.getElementById("modalImage"),title=document.getElementById("modalTitle"),category=document.getElementById("modalCategory"),text=document.getElementById("modalText"),date=document.getElementById("modalDate");title.textContent=post.title||"Untitled";category.textContent=post.category||post.type||"Article";text.textContent=post.content||post.description||post.text||"No content available.";date.textContent=post.date||"";const imageUrl=post.image||post.imageUrl||"";if(imageUrl){image.src=imageUrl;image.style.display="block";}else{image.style.display="none";}modal.style.display="block";document.body.style.overflow="hidden";}
+async function loadPosts(){try{const q=query(collection(db,"articles"),where("status","==","published"));const snapshot=await getDocs(q);allPosts=[];snapshot.forEach(doc=>allPosts.push({id:doc.id,...doc.data()}));allPosts.sort((a,b)=>new Date(b.date||0)-new Date(a.date||0));renderAll();renderRecent();}catch(error){console.error("Firebase Error:",error);["articlesContainer","storiesContainer","motivationContainer","knowledgeContainer"].forEach(showError);document.getElementById("recentPosts").innerHTML="<li class='recent-date'>Recent posts are temporarily unavailable.</li>";}}
+function showError(id){document.getElementById(id).innerHTML="<div class='empty'>Posts could not be loaded. Please try again later.</div>";}
+function escapeHtml(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
+function renderAll(posts=allPosts){const articles=posts.filter(p=>String(p.type||"").toLowerCase()!=="story"&&!String(p.category||"").toLowerCase().includes("motivation")&&!String(p.category||"").toLowerCase().includes("knowledge"));const stories=posts.filter(p=>String(p.type||"").toLowerCase()==="story");const motivation=posts.filter(p=>String(p.category||"").toLowerCase().includes("motivation"));const knowledge=posts.filter(p=>String(p.category||"").toLowerCase().includes("knowledge"));renderPosts("articlesContainer",articles);renderPosts("storiesContainer",stories);renderPosts("motivationContainer",motivation);renderPosts("knowledgeContainer",knowledge);}
+function renderPosts(id,posts){const box=document.getElementById(id);if(!posts.length){box.innerHTML="<div class='empty'>No posts available in this section yet.</div>";return;}box.innerHTML="";posts.forEach(post=>{const card=document.createElement("article");card.className="card";const image=post.image||post.imageUrl||"";const title=post.title||"Untitled";const category=post.category||post.type||"Article";const date=post.date||"";const summary=String(post.description||post.excerpt||post.content||post.text||"").replace(/\s+/g," ").slice(0,135);card.innerHTML=(image?"<img class='card-image' src='"+escapeHtml(image)+"' alt='"+escapeHtml(title)+"' loading='lazy'>":"<div class='card-image' aria-hidden='true'></div>")+"<div class='card-content'><span class='category'>"+escapeHtml(category)+"</span><h3>"+escapeHtml(title)+"</h3>"+(summary?"<p class='excerpt'>"+escapeHtml(summary)+(summary.length>=135?"…":"")+"</p>":"")+"<div class='card-meta'><span>"+escapeHtml(String(date))+"</span><a class='read' href='article.html?id="+encodeURIComponent(post.id)+"'>Read more →</a></div></div>";box.appendChild(card);});}
+function renderRecent(){const box=document.getElementById("recentPosts");const recent=allPosts.slice(0,5);if(!recent.length){box.innerHTML="<li class='recent-date'>No posts published yet.</li>";return;}box.innerHTML=recent.map(p=>"<li><a href='article.html?id="+encodeURIComponent(p.id)+"'>"+escapeHtml(p.title||"Untitled")+"</a><span class='recent-date'>"+escapeHtml(String(p.date||""))+"</span></li>").join("");}
 window.closeModal=function(){document.getElementById("articleModal").style.display="none";document.body.style.overflow="auto";};
-window.searchPosts=function(){const input=document.getElementById("searchInput"),search=input.value.trim().toLowerCase();if(!search){renderAll(allPosts);return;}const filtered=allPosts.filter(post=>{const title=String(post.title||"").toLowerCase();const content=String(post.content||post.description||post.text||"").toLowerCase();const category=String(post.category||"").toLowerCase();return title.includes(search)||content.includes(search)||category.includes(search);});renderAll(filtered);};
-document.getElementById("searchInput").addEventListener("keypress",function(event){if(event.key==="Enter")searchPosts();});window.addEventListener("click",function(event){const modal=document.getElementById("articleModal");if(event.target===modal)closeModal();});
-function escapeHtml(value){return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");}
-loadPosts();
+window.searchPosts=function(){const term=document.getElementById("searchInput").value.trim().toLowerCase();const filtered=!term?allPosts:allPosts.filter(p=>[p.title,p.content,p.description,p.text,p.category,p.type].some(v=>String(v||"").toLowerCase().includes(term)));renderAll(filtered);if(term)document.getElementById("articles").scrollIntoView({behavior:"smooth"});};
+document.getElementById("searchButton").addEventListener("click",window.searchPosts);document.getElementById("searchInput").addEventListener("keydown",e=>{if(e.key==="Enter")window.searchPosts();});window.addEventListener("click",e=>{const modal=document.getElementById("articleModal");if(e.target===modal)window.closeModal();});loadPosts();
 </script>
 <script>
-document.addEventListener('DOMContentLoaded',function(){const b=document.querySelector('.menu-toggle');const n=document.querySelector('nav');if(!b||!n)return;b.addEventListener('click',function(){const open=n.classList.toggle('open');b.setAttribute('aria-expanded',open?'true':'false');b.textContent=open?'✕':'☰';});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰';}));});
-</script>
-<script>
-(function () {
-  var ua = navigator.userAgent || '';
-  var isFacebook = /FBAN|FBAV|FB_IAB/i.test(ua);
-  var isAndroid = /Android/i.test(ua);
-  if (!isFacebook || !isAndroid) return;
-  var box = document.createElement('div');
-  box.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:99999;background:#075e54;color:#fff;padding:12px 14px;border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,.3);font-family:Arial,sans-serif;text-align:center;';
-  box.innerHTML = '<div style="font-size:14px;margin-bottom:8px">Facebook browser mein link issue ho to website Chrome mein kholen.</div><a id="pp-open-browser" href="#" style="display:inline-block;background:#fff;color:#075e54;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:700">Open in Chrome</a>';
-  document.body.appendChild(box);
-  document.getElementById('pp-open-browser').addEventListener('click', function (e) {
-    e.preventDefault();
-    var u = location.href.replace(/^https?:\\/\\//i, '');
-    location.href = 'intent://' + u + '#Intent;scheme=https;end';
-  });
-})();
+document.addEventListener("DOMContentLoaded",()=>{const b=document.querySelector(".menu-toggle"),n=document.querySelector("nav");if(!b||!n)return;b.addEventListener("click",()=>{const open=n.classList.toggle("open");b.setAttribute("aria-expanded",String(open));b.textContent=open?"✕":"☰";});n.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{n.classList.remove("open");b.setAttribute("aria-expanded","false");b.textContent="☰";}));});
+(function(){const ua=navigator.userAgent||"";if(!/FBAN|FBAV|FB_IAB/i.test(ua)||!/Android/i.test(ua))return;const box=document.createElement("div");box.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:99999;background:#102a43;color:#fff;padding:12px;border-radius:12px;box-shadow:0 4px 18px #0005;font-family:Arial,sans-serif;text-align:center";box.innerHTML="<div style='font-size:13px;margin-bottom:8px'>For the best experience, open Pak Point in Chrome.</div><a id='pp-open-browser' href='#' style='display:inline-block;background:#fff;color:#102a43;padding:8px 14px;border-radius:8px;font-weight:700'>Open in Chrome</a>";document.body.appendChild(box);document.getElementById("pp-open-browser").addEventListener("click",e=>{e.preventDefault();const u=location.href.replace(/^https?:\/\//i,"");location.href="intent://"+u+"#Intent;scheme=https;end";});})();
 </script>
 </body>
 </html>
