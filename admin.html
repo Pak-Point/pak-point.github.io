@@ -694,6 +694,59 @@
 
 
 
+
+    <!-- WEBSITE & AI CONTROL PANEL -->
+    <div class="card" id="siteSettingsCard">
+      <h2>Website Control Center</h2>
+      <p style="color:#6b7280;margin:-8px 0 12px">Manage your website and AI settings from one place.</p>
+      <div id="settingsStatus" class="status"></div>
+      <h3 style="margin-top:18px">Website Settings</h3>
+      <label for="settingSiteName">Website Name</label>
+      <input id="settingSiteName" type="text" maxlength="60" value="Pak Point">
+      <label for="settingTagline">Website Tagline</label>
+      <input id="settingTagline" type="text" maxlength="180" placeholder="Latest Pakistan & World News, Articles and Knowledge">
+      <label for="settingBreaking">Breaking News / Announcement Bar</label>
+      <input id="settingBreaking" type="text" maxlength="240" placeholder="Write an announcement for your homepage">
+      <label for="settingWhatsapp">WhatsApp Link</label>
+      <input id="settingWhatsapp" type="url" placeholder="https://wa.me/923...">
+      <label for="settingFacebook">Facebook Page Link</label>
+      <input id="settingFacebook" type="url" placeholder="https://www.facebook.com/...">
+      <label for="settingEmail">Contact Email</label>
+      <input id="settingEmail" type="email" placeholder="you@example.com">
+      <h3 style="margin-top:24px">AI Assistant Control</h3>
+      <label style="display:flex;align-items:center;gap:10px"><input id="settingAiEnabled" type="checkbox" style="width:auto"> Enable AI Assistant</label>
+      <label for="settingAiName">AI Assistant Name</label>
+      <input id="settingAiName" type="text" maxlength="50" value="Pak Point AI">
+      <label for="settingAiWelcome">Welcome Message</label>
+      <textarea id="settingAiWelcome" maxlength="500" placeholder="Assalam-o-Alaikum! Pak Point AI mein khush aamdeed."></textarea>
+      <label for="settingAiModel">Gemini Model</label>
+      <select id="settingAiModel">
+        <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
+        <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
+        <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
+      </select>
+      <label for="settingAiLanguage">Default Reply Language</label>
+      <select id="settingAiLanguage">
+        <option value="auto">Automatic / User's Language</option>
+        <option value="ur">Urdu</option>
+        <option value="en">English</option>
+        <option value="skr">Saraiki</option>
+      </select>
+      <label for="settingAiStyle">Answer Style</label>
+      <select id="settingAiStyle">
+        <option value="balanced">Balanced</option>
+        <option value="short">Short</option>
+        <option value="detailed">Detailed</option>
+      </select>
+      <label for="settingAiLimit">Daily Questions Limit (per visitor)</label>
+      <input id="settingAiLimit" type="number" min="1" max="1000" value="20">
+      <label for="settingAiPrompt">AI Instructions (System Prompt)</label>
+      <textarea id="settingAiPrompt" maxlength="5000" placeholder="Write instructions for how your AI should respond..."></textarea>
+      <p style="font-size:12px;color:#b45309;margin-top:10px">Security: Never paste your Gemini API key here. The key must stay on a secure server or protected Firebase backend, not in public website code.</p>
+      <button class="publish-btn" id="saveSiteSettings" type="button">Save Website & AI Settings</button>
+      <p style="font-size:12px;color:#6b7280;margin-top:10px">Settings are stored in Firestore: siteSettings / main. Public website integration and secure AI backend are separate implementation steps.</p>
+    </div>
+
     <!-- PUBLISHED ARTICLES -->
 
     <div class="card">
@@ -747,7 +800,9 @@
     doc,
     updateDoc,
     deleteDoc,
-    serverTimestamp
+    serverTimestamp,
+    setDoc,
+    getDoc
   }
   from
   "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -1024,6 +1079,83 @@
   );
 
 
+
+
+  /* =========================================
+     WEBSITE & AI SETTINGS
+  ========================================= */
+  const settingsStatus = document.getElementById("settingsStatus");
+  const settingsFields = {
+    siteName: "settingSiteName",
+    tagline: "settingTagline",
+    breakingText: "settingBreaking",
+    whatsapp: "settingWhatsapp",
+    facebook: "settingFacebook",
+    contactEmail: "settingEmail",
+    aiEnabled: "settingAiEnabled",
+    aiName: "settingAiName",
+    aiWelcome: "settingAiWelcome",
+    aiModel: "settingAiModel",
+    aiLanguage: "settingAiLanguage",
+    aiStyle: "settingAiStyle",
+    aiDailyLimit: "settingAiLimit",
+    aiSystemPrompt: "settingAiPrompt"
+  };
+
+  function showSettingsStatus(message, type) {
+    settingsStatus.style.display = "block";
+    settingsStatus.className = "status " + type;
+    settingsStatus.textContent = message;
+  }
+
+  async function loadSiteSettings() {
+    try {
+      const snapshot = await getDoc(doc(db, "siteSettings", "main"));
+      if (!snapshot.exists()) return;
+      const data = snapshot.data();
+      Object.entries(settingsFields).forEach(([key, id]) => {
+        const field = document.getElementById(id);
+        if (field && data[key] !== undefined) {
+          if (field.type === "checkbox") field.checked = Boolean(data[key]);
+          else field.value = data[key];
+        }
+      });
+    } catch (error) {
+      console.error("Settings load error:", error);
+      showSettingsStatus("Could not load settings: " + error.message, "error");
+    }
+  }
+
+  document.getElementById("saveSiteSettings").addEventListener("click", async () => {
+    const button = document.getElementById("saveSiteSettings");
+    const payload = {};
+    Object.entries(settingsFields).forEach(([key, id]) => {
+      const field = document.getElementById(id);
+      if (!field) return;
+      payload[key] = field.type === "checkbox" ? field.checked :
+        field.type === "number" ? Math.max(1, Math.min(1000, Number(field.value) || 20)) : field.value.trim();
+    });
+    if (!payload.siteName) {
+      showSettingsStatus("Website name is required.", "error");
+      return;
+    }
+    button.disabled = true;
+    button.textContent = "Saving...";
+    try {
+      await setDoc(doc(db, "siteSettings", "main"), {
+        ...payload,
+        updatedAt: serverTimestamp(),
+        updatedBy: auth.currentUser?.email || ADMIN_EMAIL
+      }, { merge: true });
+      showSettingsStatus("Settings saved successfully in Firebase.", "success");
+    } catch (error) {
+      console.error("Settings save error:", error);
+      showSettingsStatus("Save failed: " + error.message + ". Check Firestore rules.", "error");
+    } finally {
+      button.disabled = false;
+      button.textContent = "Save Website & AI Settings";
+    }
+  });
 
   /* =========================================
      FILE UPLOAD
