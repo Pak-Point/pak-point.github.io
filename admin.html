@@ -743,7 +743,7 @@
       <label for="settingAiPrompt">AI Instructions (System Prompt)</label>
       <textarea id="settingAiPrompt" maxlength="5000" placeholder="Write instructions for how your AI should respond..."></textarea>
       <p style="font-size:12px;color:#b45309;margin-top:10px">Security: Never paste your Gemini API key here. The key must stay on a secure server or protected Firebase backend, not in public website code.</p>
-      <button class="publish-btn" id="saveSiteSettings" type="button">Save Website & AI Settings</button>
+<h3 style="margin-top:24px">Universal Video Downloader Control</h3><p style="font-size:12px;color:#6b7280">Manage the public downloader and available formats.</p><label><input id="settingDownloaderEnabled" type="checkbox" style="width:auto" checked> Enable Video Downloader</label><label><input id="settingInstagramEnabled" type="checkbox" style="width:auto" checked> Instagram</label><label><input id="settingTikTokEnabled" type="checkbox" style="width:auto" checked> TikTok</label><label><input id="settingYouTubeEnabled" type="checkbox" style="width:auto" checked> YouTube</label><label><input id="settingMp4Enabled" type="checkbox" style="width:auto" checked> MP4 Video</label><label><input id="settingMp3Enabled" type="checkbox" style="width:auto" checked> MP3 Audio</label><label><input id="settingThumbnailEnabled" type="checkbox" style="width:auto" checked> JPG Thumbnail</label>      <button class="publish-btn" id="saveSiteSettings" type="button">Save Website & AI Settings</button>
       <p style="font-size:12px;color:#6b7280;margin-top:10px">Settings are stored in Firestore: siteSettings / main. Public website integration and secure AI backend are separate implementation steps.</p>
     </div>
 
@@ -1100,7 +1100,14 @@
     aiLanguage: "settingAiLanguage",
     aiStyle: "settingAiStyle",
     aiDailyLimit: "settingAiLimit",
-    aiSystemPrompt: "settingAiPrompt"
+    aiSystemPrompt: "settingAiPrompt",
+    downloaderEnabled: "settingDownloaderEnabled",
+    instagramEnabled: "settingInstagramEnabled",
+    tiktokEnabled: "settingTikTokEnabled",
+    youtubeEnabled: "settingYouTubeEnabled",
+    mp4Enabled: "settingMp4Enabled",
+    mp3Enabled: "settingMp3Enabled",
+    thumbnailEnabled: "settingThumbnailEnabled"
   };
 
   function showSettingsStatus(message, type) {
